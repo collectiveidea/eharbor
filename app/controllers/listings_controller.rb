@@ -6,4 +6,13 @@ class ListingsController < ApplicationController
   def show
     @listing = Listing.find(params[:id])
   end
+  
+  def new
+    @listing = Listing.new
+  end
+  
+  def create
+    @listing = Listing.create(params[:listing])
+    redirect_to @listing
+  end
 end
