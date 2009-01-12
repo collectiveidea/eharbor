@@ -1,4 +1,8 @@
-<%= form_for [@listing, Bid.new] do |f| %>
+<%= form_for [@listing, @bid || Bid.new] do |f| %>
+  <% if f.object.errors[:amount].present? %>
+    <p id="errorExplanation">Your bid <%= f.object.errors[:amount].to_sentence %></p>
+  <% end %>
+  
   <%= f.label :amount %>
   <%= f.text_field :amount, :size => 6 %>
   <%= f.submit "Bid" %>
