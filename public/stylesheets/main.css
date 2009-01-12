@@ -29,6 +29,7 @@ header {
 
 #toolbar {
   text-align: right;
+  margin: 0 6px 6px 0;
 }
 
 nav {
@@ -63,6 +64,26 @@ nav ul {
     background-color: #333339;
   }
 
+dl.info {
+  background-color: #FFE;
+  border: 1px solid #EED;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  padding: 12px;
+}
+
+dl.info dt {
+  float: left;
+  clear: left;
+  width: 100px;
+  text-align: right;
+  padding-right: 9px;
+}
+
+dl.info dd {
+  margin: 0 0 0 109px;
+}
 
 /** Forms *********************/
 input.text {
@@ -78,4 +99,22 @@ label {
   font-size: 10px;
   color: #666;
   font-weight: bold;
+}
+
+table.listings {
+  width: 100%;
+}
+
+  table.listings td {
+    line-height: 3em;
+    padding: 0.5em;
+  }
+
+#bid {
+  border: 1px solid #cddbf4;
+  background-color: #e1e9f8;
+  padding: 12px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
 }

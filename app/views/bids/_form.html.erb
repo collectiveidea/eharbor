@@ -1,0 +1,5 @@
+<% form_for [@listing, Bid.new] do |f| %>
+  <%= f.label :amount %>
+  <%= f.text_field :amount, :size => 6 %>
+  <%= f.submit "Bid" %>
+<% end %>
