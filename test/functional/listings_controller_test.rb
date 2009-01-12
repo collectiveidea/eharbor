@@ -22,6 +22,7 @@ class ListingsControllerTest < ActionController::TestCase
   end
   
   test "new" do
+    sign_in_as users(:brandon)
     get :new
     assert_response :success
     assert_template 'new'
@@ -36,7 +37,13 @@ class ListingsControllerTest < ActionController::TestCase
     end
   end
   
+  test "new when signed out" do
+    get :new
+    assert_redirected_to sign_in_path
+  end
+  
   test "create" do
+    sign_in_as users(:brandon)
     assert_difference 'Listing.count' do
       post :create, :listing => {:title => 'Getting Testy', :description => "Lorem…"}
     end
@@ -44,14 +51,28 @@ class ListingsControllerTest < ActionController::TestCase
     assert_redirected_to listing_path(assigns(:listing))
   end
   
+  test "create when signed out" do
+    assert_no_difference 'Listing.count' do
+      post :create, :listing => {:title => 'Getting Testy', :description => "Lorem…"}
+    end    
+    assert_redirected_to sign_in_path
+  end
+  
   test "edit" do
+    sign_in_as users(:brandon)
     get :edit, :id => listings(:macbook)
     assert_response :success
     assert_template 'edit'
     assert_equal listings(:macbook), assigns(:listing)
   end
   
+  test "edit when signed out" do
+    get :edit, :id => listings(:macbook)
+    assert_redirected_to sign_in_path
+  end
+  
   test "update" do
+    sign_in_as users(:brandon)
     post :update, :id => listings(:macbook), :listing => {:title => 'Updated'}
     assert_response :redirect
     assert_redirected_to listing_path(listings(:macbook))
@@ -59,4 +80,8 @@ class ListingsControllerTest < ActionController::TestCase
     assert_equal 'Updated', listings(:macbook).title
   end
   
+  test "update when signed out" do
+    post :update, :id => listings(:macbook), :listing => {:title => 'Updated'}
+    assert_redirected_to sign_in_path
+  end
 end
