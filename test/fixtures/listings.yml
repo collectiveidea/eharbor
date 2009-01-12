@@ -5,3 +5,4 @@ macbook:
   description: Lorem ipsum dolor sit amet…
   user: sam
   duration: 5
+  end_at: <%= 5.days.from_now.to_s(:db) %>
