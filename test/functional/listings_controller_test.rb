@@ -44,4 +44,19 @@ class ListingsControllerTest < ActionController::TestCase
     assert_redirected_to listing_path(assigns(:listing))
   end
   
+  test "edit" do
+    get :edit, :id => listings(:macbook)
+    assert_response :success
+    assert_template 'edit'
+    assert_equal listings(:macbook), assigns(:listing)
+  end
+  
+  test "update" do
+    post :update, :id => listings(:macbook), :listing => {:title => 'Updated'}
+    assert_response :redirect
+    assert_redirected_to listing_path(listings(:macbook))
+    listings(:macbook).reload
+    assert_equal 'Updated', listings(:macbook).title
+  end
+  
 end
