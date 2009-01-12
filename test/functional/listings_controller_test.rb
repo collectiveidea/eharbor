@@ -13,12 +13,14 @@ class ListingsControllerTest < ActionController::TestCase
   end
   
   test "show" do
+    sign_in_as users(:brandon)
     get :show, :id => listings(:macbook)
     assert_response :success
     assert_template 'show'
     assert_equal listings(:macbook), assigns(:listing)
     
     assert_select 'h2', listings(:macbook).title
+    assert_select 'form[action=?]', listing_bids_path(listings(:macbook))
   end
   
   test "new" do
@@ -27,7 +29,7 @@ class ListingsControllerTest < ActionController::TestCase
     assert_response :success
     assert_template 'new'
     assert_not_nil assigns(:listing)
-    
+
     assert_select 'form[action=?]', listings_path do
       assert_select 'input[type=text][name=?]', 'listing[title]'
       assert_select 'label[for=?]', 'listing_title'
@@ -84,4 +86,5 @@ class ListingsControllerTest < ActionController::TestCase
     post :update, :id => listings(:macbook), :listing => {:title => 'Updated'}
     assert_redirected_to sign_in_path
   end
+  
 end
