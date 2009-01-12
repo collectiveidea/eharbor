@@ -4,7 +4,7 @@ class BidTest < ActiveSupport::TestCase
   should_belong_to :user
   should_belong_to :listing
   
-  context "highest bid validations" do
+  context "validations" do
     setup do
       listings(:macbook).bids.create! :amount => 100, :user => users(:daniel)
     end
@@ -25,5 +25,14 @@ class BidTest < ActiveSupport::TestCase
       bid = listings(:macbook).bids.build :amount => 100.01, :user => users(:daniel)
       assert bid.valid?
     end
+    
+    should "be invalid when listing is expired" do
+      listings(:macbook).end_at = 5.seconds.ago
+      listings(:macbook).save!
+      bid = listings(:macbook).bids.build :amount => 100, :user => users(:daniel)
+      assert !bid.valid?
+    end
+    
   end
+
 end
