@@ -1,6 +1,6 @@
-<h2><%= @listing.title %></h2>
+<h2><%=h @listing.title %></h2>
 <div>
-  <%= @listing.description %>
+  <%=h @listing.description %>
 </div>
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
 <%= link_to 'All Listings', listings_path %>
