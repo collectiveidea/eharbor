@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :listings
+  map.resources :listings, :has_many => [:bids]
   map.resource :profile, :controller => 'users', :only => [:edit, :update]
   map.resources :users
   
