@@ -61,6 +61,47 @@ describe ListingsController do
       do_action
       response.should redirect_to(listing_path(assigns[:listing]))
     end
+  end 
+  
+  describe "edit" do
+    before do
+      @listing = Factory(:listing)
+      get :edit, :id => @listing
+    end
+    
+    it "should render the edit template" do
+      response.should render_template 'edit'
+    end
+    
+    it "should assign the listing for the view" do
+      assigns(:listing).should == @listing
+    end    
   end
+   
+  describe "update" do
+    before do
+      @listing = Factory(:listing, :title => "Big Mac")
+    end
+
+    def do_action
+      post :update, :id => @listing, :listing => {:title => "Whopper"}
+    end
+    
+    it "should not create a new listing" do
+      method(:do_action).should_not change { Listing.count }
+    end
+     
+    it "should redirect to the listing" do
+      do_action
+      response.should redirect_to(listing_path(@listing))
+    end
+    
+    it "should update the listing attributes" do 
+      do_action
+      @listing.reload
+      @listing.title.should == "Whopper"
+      
+    end
+  end  
 
 end
