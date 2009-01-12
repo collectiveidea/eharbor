@@ -2,6 +2,17 @@
 
 <%= form_for @listing do |f| %>
 
+  <% if @listing.errors.any? %>
+    <div id="errorExplanation">
+      <h2>The following errors prohibited this form from being saved:</h2>
+      <ul>
+        <% @listing.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <p>
     <%= f.label :title %><br/>
     <%= f.text_field :title %>
