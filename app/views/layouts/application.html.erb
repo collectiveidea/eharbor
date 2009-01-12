@@ -10,6 +10,15 @@
 <body>
   <div id="main">
     <header>
+      <div id="toolbar">
+        <% if signed_in? %>
+          Signed in as <%= h(current_user) %> |
+          <%= link_to "Sign Out", session_path, :method => :delete %>
+        <% else %>
+          <%= link_to "Sign In", new_session_path %> |
+          <%= link_to "Register", new_user_path %>
+        <% end %>
+      </div>
       <h1>
         <%= link_to '<span class="e1">e</span><span class="h2">H</span><span class="a3">a</span><span class="r4">r</span><span class="b5">b</span><span class="o6">o</span><span class="r7">r</span>', root_path %>
       </h1>
