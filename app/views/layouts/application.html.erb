@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>eHarbor</title>
+  <%= stylesheet_link_tag 'boilerplate', 'main' %>
+</head>
+<body>
+  <div id="main">
+    <header>
+      <h1>
+        <%= link_to '<span class="e1">e</span><span class="h2">H</span><span class="a3">a</span><span class="r4">r</span><span class="b5">b</span><span class="o6">o</span><span class="r7">r</span>', root_path %>
+      </h1>
+      <nav>
+        <ul>
+          <li><%= link_to "Buy", listings_path %></li>
+          <li><%= link_to "Sell", new_listing_path %></li>
+        </ul>
+      </nav>
+    </header>
+    <%= yield %>
+  </div>
+</body>
+</html>
