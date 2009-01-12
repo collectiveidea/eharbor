@@ -12,7 +12,11 @@ class ListingsController < ApplicationController
   end
   
   def create
-    @listing = Listing.create(params[:listing])
-    redirect_to @listing
+    @listing = Listing.new(params[:listing])
+    if @listing.save
+      redirect_to @listing
+    else
+      render :new
+    end
   end
 end
