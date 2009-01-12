@@ -1,0 +1,77 @@
+body {
+  padding: 3em;
+}
+#main {
+  width: 800px;
+  margin: 0 auto;
+}
+
+header {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 1.5em;
+}
+
+  header h1 {
+    margin: 0;
+    float: left;
+    margin: 0 18px 0 0;
+  }
+  header h1 a {
+    text-decoration: none;
+  }
+  
+  header .e1, header .b5 { color: #F00; }
+  header .h2, header .o6 { color: #009; }
+  header .a3, header .r7 { color: #FC0; }
+  header .r4             { color: #9C0; }
+
+nav {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+  overflow: hidden;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  background-color: #222;
+  margin: 0;
+  margin-left: 3em;
+  padding: 0 1em;
+}
+
+  nav li {
+    float: left;
+  }
+
+  nav li a {
+    display: block;
+    line-height: 2em;
+    color: #FFF;
+    text-decoration: none;
+    padding: 0 1em;
+    font-size: 18px;
+  }
+
+  nav li a:hover {
+    background-color: #333339;
+  }
+
+
+/** Forms *********************/
+input.text {
+  font-size: 18px;
+}
+
+textarea {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+label {
+  text-transform: uppercase;
+  font-size: 10px;
+  color: #666;
+  font-weight: bold;
+}
