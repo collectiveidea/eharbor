@@ -6,3 +6,5 @@
 #
 sam: 
   email: sam@example.com
+amy:
+  email: amy@example.com
