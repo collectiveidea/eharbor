@@ -1,4 +1,5 @@
-<% form_for [@listing, Bid.new] do |f| %>
+<% form_for [@listing, @bid || Bid.new] do |f| %>
+  <%= f.error_messages %>
   <%= f.label :amount %>
   <%= f.text_field :amount, :size => 6 %>
   <%= f.submit "Bid" %>
