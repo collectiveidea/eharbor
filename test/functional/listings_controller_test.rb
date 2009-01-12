@@ -29,6 +29,10 @@ class ListingsControllerTest < ActionController::TestCase
       should "should listing title" do
         assert_select 'h2', listings(:macbook).title
       end
+      
+      should "not display bid form when" do
+        assert_select 'form[action=?]', listing_bids_path(listings(:macbook)), false
+      end
     end
     
     context "new" do
@@ -56,6 +60,16 @@ class ListingsControllerTest < ActionController::TestCase
   context "signed in as a user" do
     setup do
       sign_in_as users(:brandon)
+    end
+    
+    context "show" do
+      setup do
+        get :show, :id => listings(:macbook)
+      end
+      
+      should "display bid form" do
+        assert_select 'form[action=?]', listing_bids_path(listings(:macbook))
+      end
     end
     
     context "new" do
@@ -111,4 +125,5 @@ class ListingsControllerTest < ActionController::TestCase
       end
     end
   end
+  
 end
