@@ -85,6 +85,7 @@ describe ListingsController do
     end
    
     describe "update" do  
+      
       before do
         @listing = Factory(:listing, :title => "Big Mac", :user => @user) 
       end
@@ -106,8 +107,8 @@ describe ListingsController do
         do_action
         @listing.reload
         @listing.title.should == "Whopper"
-      end   
-    end  
+      end
+    end
   end
 
   context "when signed out" do

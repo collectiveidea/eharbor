@@ -1,7 +1,31 @@
 <h2><%=h @listing.title %></h2>
-<div>
+<dl class="info">
+  <dt>Seller:</dt>
+  <dd>
+    <%= link_to h(@listing.user), @listing.user %>
+    <% if signed_in? && current_user == @listing.user %>
+      (<%= link_to 'Edit', edit_listing_path(@listing) %>)
+    <% end %>
+  </dd>
+  <% if @listing.highest_bid %>
+    <dt>Highest Bid:</dt>
+    <dd>
+      <%= @listing.highest_bid.amount.format %>
+      (<%= link_to h(@listing.highest_bid.user), @listing.highest_bid.user %>)
+    </dd>
+  <% end %>
+  <dt>History:</dt>
+  <dd><%= pluralize @listing.bids.count, 'bid' %></dd>
+</dl>
+<div class="description">
   <%=h @listing.description %>
 </div>
-<% if signed_in? && current_user == @listing.user %>
-  <%= link_to 'Edit', edit_listing_path(@listing) %>
-<% end %>
+
+<div id="bid">
+  <h3>Place a bid</h3>
+  <% if signed_in? %>
+    <%= render :partial => 'bids/form' %>
+  <% else %>
+    <p><%= link_to 'Sign in', new_session_path %> or <%= link_to 'register', new_user_path %> to place a bid.</p>
+  <% end %>
+</div>
