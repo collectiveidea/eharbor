@@ -20,4 +20,9 @@ class ListingTest < ActiveSupport::TestCase
     assert listing.valid?
   end
 
+  test "highest_bid should return the highest bid" do
+    listings(:macbook).bids.create! :amount => 1
+    bid = listings(:macbook).bids.create! :amount => 2
+    assert_equal bid, listings(:macbook).highest_bid
+  end
 end
