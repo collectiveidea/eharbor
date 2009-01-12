@@ -1,0 +1,4 @@
+coverage
+doc
+pkg
+spec/money/rails/test.db
