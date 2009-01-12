@@ -19,4 +19,18 @@ class ListingsController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @listing = Listing.find(params[:id])
+  end
+  
+  def update
+    @listing = Listing.find(params[:id])
+    if @listing.update_attributes params[:listing]
+      redirect_to @listing
+    else
+      render :edit
+    end
+  end
+  
 end
