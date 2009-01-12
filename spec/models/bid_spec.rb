@@ -24,5 +24,12 @@ describe Bid do
       Factory(:bid, :listing => @listing, :amount => "$5.00")
       @bid.should be_valid
     end
+
+    it "should be invalid when listing is expired" do
+      @listing.end_at = 5.seconds.ago
+      @listing.save
+      bid = Factory.build(:bid,  :amount => 100, :user => Factory(:user), :listing => @listing)
+      bid.should_not be_valid
+    end
   end
 end
