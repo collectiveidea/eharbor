@@ -89,4 +89,5 @@ class ListingsControllerTest < ActionController::TestCase
     post :update, :id => listings(:macbook), :listing => {:title => 'Updated'}
     assert_redirected_to new_user_session_path
   end
+  
 end
