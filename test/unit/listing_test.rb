@@ -7,8 +7,8 @@ class ListingTest < ActiveSupport::TestCase
   
   context "highest_bid" do
     should "return the highest bid" do
-      listings(:macbook).bids.create! :amount => 1
-      bid = listings(:macbook).bids.create! :amount => 2
+      listings(:macbook).bids.create! :amount => 1, :user => users(:daniel)
+      bid = listings(:macbook).bids.create! :amount => 2, :user => users(:daniel)
       assert_equal bid, listings(:macbook).highest_bid
     end
   end

@@ -4,3 +4,10 @@ brandon:
   encrypted_password: fe734c00e64037d20eaf1f7f37e47b9f5fb0a411
   salt: testing
   email_confirmed: true
+daniel:
+  nickname: daniel
+  email: daniel@collectiveidea.com
+  encrypted_password: fe734c00e64037d20eaf1f7f37e47b9f5fb0a411
+  salt: testing
+  email_confirmed: true
+  
