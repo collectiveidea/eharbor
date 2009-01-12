@@ -16,6 +16,15 @@
   <% end %>
   <dt>History:</dt>
   <dd><%= pluralize @listing.bids.count, 'bid' %></dd>
+  <% if @listing.active? %>
+    <dt>End time:</dt>
+    <dd>
+      <%= distance_of_time_in_words_to_now @listing.end_at, true %>
+      (<%= @listing.end_at.strftime("%A, %B %d, %H:%I:%S %Z") %>)
+    </dd>
+    
+      
+  <% end %>
 </dl>
 <div class="description">
   <%=h @listing.description %>
