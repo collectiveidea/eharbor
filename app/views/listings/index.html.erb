@@ -3,6 +3,6 @@
 
 <ul>
   <% @listings.each do |listing| %>
-    <li><%= link_to listing.title, listing %></li>
+    <li><%= link_to h(listing.title), listing %></li>
   <% end %>
 </ul>
