@@ -11,7 +11,11 @@ require 'spec/rails'
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
-
+module UserSpecHelper
+  def sign_in_as(user)
+    controller.current_user = user
+  end
+end    
 Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record
@@ -51,4 +55,8 @@ Spec::Runner.configure do |config|
   # == Notes
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
+  
+  config.include UserSpecHelper
 end
+
+
