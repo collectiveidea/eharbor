@@ -1,6 +1,7 @@
 body {
-  padding: 3em;
+  padding: 1.5em;
 }
+
 #main {
   width: 800px;
   margin: 0 auto;
@@ -26,6 +27,10 @@ header {
   header .a3, header .r7 { color: #FC0; }
   header .r4             { color: #9C0; }
 
+#toolbar {
+  text-align: right;
+}
+
 nav {
   display: block;
 }
@@ -38,7 +43,6 @@ nav ul {
   -moz-border-radius: 10px;
   background-color: #222;
   margin: 0;
-  margin-left: 3em;
   padding: 0 1em;
 }
 
