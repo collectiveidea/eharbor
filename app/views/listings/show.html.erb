@@ -20,7 +20,7 @@
     <dt>End time:</dt>
     <dd>
       <%= distance_of_time_in_words_to_now @listing.end_at, true %>
-      (<%= @listing.end_at.strftime("%A, %B %d, %H:%I:%S %Z") %>)
+      (<%= @listing.end_at.to_s(:listing) %>)
     </dd>
   <% end %>
 </dl>
