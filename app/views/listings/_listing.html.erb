@@ -1,0 +1,16 @@
+<tr>
+  <td><%= link_to listing.title, listing %></td>
+  <td><%= pluralize listing.bids.count, 'bid' %></td>
+  <td>
+    <% if listing.highest_bid %>
+    <strong><%= number_to_currency(listing.highest_bid.amount) %></strong>
+    <% end %>
+  </td>
+  <td>
+    <% if listing.active? %>
+      <%= distance_of_time_in_words_to_now listing.end_at, true %>
+    <% else %>
+      <%= listing.end_at.to_s(:listing) %>
+    <% end %>
+  </td>
+</tr>

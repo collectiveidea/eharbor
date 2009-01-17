@@ -1,8 +1,4 @@
 <h1>Listings</h1>
 <%= link_to 'New Listing', new_listing_path %>
 
-<ul>
-  <% @listings.each do |listing| %>
-    <li><%= link_to listing.title, listing %></li>
-  <% end %>
-</ul>
+<%= render 'listings', :listings => @listings %>
