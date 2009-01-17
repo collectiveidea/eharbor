@@ -1,1 +1,16 @@
-<li><%= link_to h(listing.title), listing %></li>
+<tr>
+  <td><%= link_to h(listing.title), listing %></td>
+  <td><%= pluralize listing.bids.count, 'bid' %></td>
+  <td>
+    <% if listing.highest_bid %>
+    <strong><%= listing.highest_bid.amount.format %></strong>
+    <% end %>
+  </td>
+  <td>
+    <% if listing.active? %>
+      <%= distance_of_time_in_words_to_now listing.end_at, true %>
+    <% else %>
+      <%= listing.end_at.to_s(:listing) %>
+    <% end %>
+  </td>
+</tr>
