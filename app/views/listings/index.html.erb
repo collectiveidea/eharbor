@@ -1,7 +1,3 @@
 <h2>Listings</h2>
 
-<ul>
-  <% @listings.each do |listing| %>
-    <li><%= link_to listing.title, listing %></li>
-  <% end %>
-</ul>
+<%= render 'listings', :listings => @listings %>
