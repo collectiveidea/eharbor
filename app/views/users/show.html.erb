@@ -4,6 +4,5 @@
 <% end %>
 
 <h3>Listings</h3>
-<ul>
-  <%= render @user.listings %>
-</ul>
+
+<%= render 'listings/listings', :object => @user.listings %>
