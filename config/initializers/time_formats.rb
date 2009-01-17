@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:listing] = "%B %d, %H:%I:%S %Z"
