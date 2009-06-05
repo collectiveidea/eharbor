@@ -1,7 +1,5 @@
 <h2>Listings</h2>
 
 <ul>
-  <% @listings.each do |listing| %>
-    <li><%= link_to h(listing.title), listing %></li>
-  <% end %>
+  <%= render :partial => @listings %>
 </ul>
