@@ -1,4 +1,7 @@
 <h2><%=h @user %></h2>
+<% if current_user == @user %>
+  <%= link_to 'Edit', edit_profile_path %>
+<% end %>
 
 <h3>Listings</h3>
 <ul>

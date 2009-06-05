@@ -13,7 +13,7 @@ require 'spec/rails'
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 module UserSpecHelper
   def sign_in_as(user)
-    controller.current_user = user
+    @controller.current_user = user
   end
 end    
 Spec::Runner.configure do |config|
