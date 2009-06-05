@@ -1,0 +1,6 @@
+<h1>Edit User</h1>
+
+<% form_for @user, :url => profile_path do |form| %>
+  <%= render form %>
+  <%= form.submit 'Save' %>
+<% end %>
