@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  Clearance::Routes.draw(map)
   map.resources :listings
   
   # The priority is based upon order of creation: first created -> highest priority.
