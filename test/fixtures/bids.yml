@@ -1,11 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  user_id: 1
-  listing_id: 1
-  cents: 1
-
-two:
-  user_id: 1
-  listing_id: 1
-  cents: 1
+  user: sam
+  listing: macbook
+  amount: 1
