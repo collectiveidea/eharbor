@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :listings
+  has_many :bids
 
   def to_s
     email

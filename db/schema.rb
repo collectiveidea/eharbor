@@ -13,6 +13,14 @@
 
 ActiveRecord::Schema.define(:version => 20130423193153) do
 
+  create_table "bids", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "listing_id"
+    t.decimal  "amount",     :precision => 10, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
+  end
+
   create_table "listings", :force => true do |t|
     t.string   "title"
     t.text     "description"
