@@ -1,13 +1,11 @@
-Factory.sequence :email do |n|
-  "user#{n}@example.com"
+Factory.sequence :nickname do |n|
+  "user#{n}"
 end
 
 Factory.define :user do |user|
-  user.email                 { Factory.next :email }
+  user.nickname              { Factory.next :nickname }
+  user.email                 {|u| "#{u.nickname}@example.com" }
   user.password              { "password" }
   user.password_confirmation { "password" }
-end
-
-Factory.define :email_confirmed_user, :parent => :user do |user|
   user.email_confirmed { true }
 end

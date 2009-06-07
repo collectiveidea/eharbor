@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090608201900) do
+ActiveRecord::Schema.define(:version => 20090607014422) do
 
   create_table "bids", :force => true do |t|
     t.integer  "user_id"
@@ -36,12 +36,15 @@ ActiveRecord::Schema.define(:version => 20090608201900) do
     t.string   "token",              :limit => 128
     t.datetime "token_expires_at"
     t.boolean  "email_confirmed",                   :default => false, :null => false
+    t.string   "confirmation_token", :limit => 128
+    t.string   "remember_token",     :limit => 128
     t.string   "nickname"
-    t.string   "time_zone"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["id", "confirmation_token"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["id", "token"], :name => "index_users_on_id_and_token"
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
   add_index "users", ["token"], :name => "index_users_on_token"
 
 end
