@@ -7,6 +7,8 @@ class Listing < ActiveRecord::Base
   
   before_save :calculate_end_at
   
+  attr_protected :end_at
+  
   named_scope :active, lambda {{
     :conditions => ['listings.created_at <= :now AND listings.end_at >= :now', {:now => Time.zone.now}],
     :order => 'listings.created_at DESC'
