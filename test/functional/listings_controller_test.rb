@@ -93,7 +93,7 @@ class ListingsControllerTest < ActionController::TestCase
     
     context "create" do
       setup do
-        post :create, :listing => {:title => 'Getting Testy', :description => "Lorem…"}
+        post :create, :listing => {:title => 'Getting Testy', :description => "Lorem…", :duration => 3}
       end
       
       should_change 'Listing.count'
