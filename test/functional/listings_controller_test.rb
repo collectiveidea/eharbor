@@ -2,14 +2,27 @@ require 'test_helper'
 
 class ListingsControllerTest < ActionController::TestCase
   
-  test "index" do
-    get :index
-    assert_response :success
-    assert_template 'index'
-    assert_not_nil assigns(:listings)
-    assert assigns(:listings).include?(listings(:macbook))
+  context "index" do
+    setup do
+      get :index
+    end
     
-    assert_select 'a[href=?]', listing_path(listings(:macbook)), listings(:macbook).title
+    should "render success" do
+      assert_response :success
+    end
+    
+    should "render the 'index' template" do
+      assert_template 'index'
+    end
+    
+    should "assign listings" do
+      assert_not_nil assigns(:listings)
+      assert assigns(:listings).include?(listings(:macbook))
+    end
+    
+    should "link to listings" do
+      assert_select 'a[href=?]', listing_path(listings(:macbook)), listings(:macbook).title
+    end
   end
   
   test "show" do
