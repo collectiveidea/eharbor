@@ -8,6 +8,8 @@ class ListingsControllerTest < ActionController::TestCase
     assert_template 'index'
     assert_not_nil assigns(:listings)
     assert assigns(:listings).include?(listings(:macbook))
+    
+    assert_select 'a[href=?]', listing_path(listings(:macbook)), listings(:macbook).title
   end
   
 end
