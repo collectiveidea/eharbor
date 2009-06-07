@@ -8,6 +8,8 @@ class Bid < ActiveRecord::Base
   validate :verify_minimum_bid
   validate :verify_active_listing
   
+  attr_accessible :amount
+  
 private
   
   def verify_minimum_bid
