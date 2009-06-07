@@ -14,8 +14,8 @@ class Listing < ActiveRecord::Base
   scope :active, lambda {
     recent.where(['listings.created_at <= :now AND listings.end_at >= :now', {:now => Time.zone.now}])
   }
-  
-  attr_protected :end_at
+
+  attr_accessible :title, :description, :duration
   
   def highest_bid
     bids.order('bids.amount DESC').first
