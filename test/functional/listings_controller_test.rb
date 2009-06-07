@@ -7,18 +7,9 @@ class ListingsControllerTest < ActionController::TestCase
       get :index
     end
     
-    should "render success" do
-      assert_response :success
-    end
-    
-    should "render the 'index' template" do
-      assert_template 'index'
-    end
-    
-    should "assign listings" do
-      assert_not_nil assigns(:listings)
-      assert assigns(:listings).include?(listings(:macbook))
-    end
+    should_respond_with :success
+    should_render_template 'index'
+    should_assign_to :listings
     
     should "link to listings" do
       assert_select 'a[href=?]', listing_path(listings(:macbook)), listings(:macbook).title
