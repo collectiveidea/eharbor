@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
   before_filter :authenticate, :except => [:index, :show]
   
   def index
-    @listings = Listing.all
+    @listings = Listing.active
   end
   
   def show
