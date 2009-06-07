@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-macbook:
-  title: MacBook Air
-  description: Lorem ipsum dolor sit amet…
-  duration: 5
-  user: brandon
-  created_at: <%= Time.zone.now.to_s(:db) %>
-  end_at: <%= 5.days.from_now.to_s(:db) %>

@@ -7,6 +7,13 @@ class Listing < ActiveRecord::Base
   
   before_save :calculate_end_at
   
+  attr_accessible :title, :description, :duration
+  
+  named_scope :active, lambda {{
+    :conditions => ['listings.created_at <= :now AND listings.end_at >= :now', {:now => Time.zone.now}],
+    :order => 'listings.created_at DESC'
+  }}
+  
   def highest_bid
     bids.first(:order => 'bids.cents DESC')
   end
