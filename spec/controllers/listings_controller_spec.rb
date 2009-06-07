@@ -55,7 +55,7 @@ describe ListingsController do
   
     describe "create" do 
       def do_action
-        @listing_attrs = Factory.attributes_for(:listing, :title => "Big Mac")
+        @listing_attrs = Factory.attributes_for(:listing, :title => "Big Mac", :duration => 3)
         post :create, :listing => @listing_attrs
       end
   
