@@ -15,6 +15,8 @@ class Listing < ActiveRecord::Base
     recent.where(['listings.created_at <= :now AND listings.end_at >= :now', {:now => Time.zone.now}])
   }
   
+  attr_protected :end_at
+  
   def highest_bid
     bids.order('bids.amount DESC').first
   end
