@@ -1,9 +1,5 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  title: MyString
-  description: MyText
-
-two:
-  title: MyString
-  description: MyText
+macbook:
+  title: MacBook Air
+  description: Lorem ipsum dolor sit amet…
