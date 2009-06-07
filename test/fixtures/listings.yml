@@ -6,3 +6,10 @@ macbook:
   user: sam
   duration: 5
   end_at: <%= 5.days.from_now.to_s(:db) %>
+  created_at: <%= Time.zone.now.to_s(:db) %>
+expired:
+  title: Antique Fixture
+  description: Lorem ipsum dolor sit amet…
+  user: sam
+  created_at: <%= 5.days.ago.to_s(:db) %>
+  end_at: <%= 1.second.ago.to_s(:db) %>

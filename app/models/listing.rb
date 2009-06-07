@@ -9,6 +9,12 @@ class Listing < ActiveRecord::Base
   
   before_save :calculate_end_at
   
+  scope :recent, order('listings.created_at DESC')
+  
+  scope :active, lambda {
+    recent.where(['listings.created_at <= :now AND listings.end_at >= :now', {:now => Time.zone.now}])
+  }
+  
   def highest_bid
     bids.order('bids.amount DESC').first
   end
