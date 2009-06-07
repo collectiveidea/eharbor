@@ -12,4 +12,13 @@ class ListingsControllerTest < ActionController::TestCase
     assert assigns(:listings).include?(listing)
   end
   
+  test "show" do
+    get :show, :id => listings(:macbook)
+    assert_response :success
+    assert_template 'show'
+    assert_equal listings(:macbook), assigns(:listing)
+    
+    assert_select 'h2', listings(:macbook).title
+  end
+  
 end
