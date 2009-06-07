@@ -3,7 +3,7 @@ require 'test_helper'
 class ListingTest < ActiveSupport::TestCase
 
   def valid_listing_attrs(attrs = {})
-    {:title => 'Title', :description => 'Description'}.merge(attrs)
+    {:title => 'Title', :description => 'Description', :duration => 3}.merge(attrs)
   end
 
   test "is invalid without a title" do
