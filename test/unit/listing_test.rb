@@ -21,9 +21,13 @@ class ListingTest < ActiveSupport::TestCase
   end
 
   test "highest_bid should return the highest bid" do
-    listings(:macbook).bids.create! :amount => 1, :user => users(:amy)
-    bid = listings(:macbook).bids.create! :amount => 2, :user => users(:amy)
-    assert_equal bid, listings(:macbook).highest_bid
+    bid1 = listings(:macbook).bids.build :amount => 1
+    bid1.user = users(:amy)
+    bid1.save!
+    bid2 = listings(:macbook).bids.build :amount => 2
+    bid2.user = users(:amy)
+    bid2.save!
+    assert_equal bid2, listings(:macbook).highest_bid
   end
   
   test "listing should include listings that have ended" do
