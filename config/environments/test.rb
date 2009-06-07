@@ -24,3 +24,6 @@ config.action_mailer.delivery_method = :test
 config.gem 'thoughtbot-shoulda',
   :source => 'http://gems.github.com',
   :lib => 'shoulda'
+config.gem 'thoughtbot-factory_girl',
+  :source => 'http://gems.github.com',
+  :lib => 'factory_girl'
