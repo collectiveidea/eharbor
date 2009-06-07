@@ -26,4 +26,13 @@ class ListingTest < ActiveSupport::TestCase
     assert_equal bid, listings(:macbook).highest_bid
   end
   
+  test "listing should include listings that have ended" do
+    assert !Listing.active.include?(listings(:expired))
+  end
+
+  test "listing should include listings that have not ended" do
+    listing = Listing.create valid_listing_attrs(:end_at => 3.days.from_now)
+    assert Listing.active.include?(listing)
+  end
+
 end
