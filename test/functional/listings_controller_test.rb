@@ -12,4 +12,13 @@ class ListingsControllerTest < ActionController::TestCase
     assert_select 'a[href=?]', listing_path(listings(:macbook)), listings(:macbook).title
   end
   
+  test "show" do
+    get :show, :id => listings(:macbook)
+    assert_response :success
+    assert_template 'show'
+    assert_equal listings(:macbook), assigns(:listing)
+    
+    assert_select 'h2', listings(:macbook).title
+  end
+  
 end
