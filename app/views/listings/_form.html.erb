@@ -22,6 +22,11 @@
   </p>
   
   <p>
+    <%= f.label :duration %><br/>
+    <%= f.select :duration, [['3 days', 3], ['5 days', 5], ['7 days', 7]] %>
+  </p>
+  
+  <p>
     <%= f.submit %>
   </p>
 <% end %>

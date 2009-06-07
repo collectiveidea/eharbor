@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20130423193153) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
+    t.integer  "duration"
+    t.datetime "end_at"
   end
 
   create_table "users", :force => true do |t|

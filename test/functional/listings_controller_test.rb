@@ -49,7 +49,7 @@ class ListingsControllerTest < ActionController::TestCase
   
   test "create" do
     assert_difference 'Listing.count' do
-      post :create, :listing => {:title => 'Getting Testy', :description => "Lorem..."}
+      post :create, :listing => {:title => 'Getting Testy', :description => "Lorem...", :duration => 3}
     end
     assert_response :redirect
     assert_redirected_to listing_path(assigns(:listing))
@@ -58,7 +58,7 @@ class ListingsControllerTest < ActionController::TestCase
   test "create when not signed in" do
     sign_out :user
     assert_no_difference 'Listing.count' do
-      post :create, :listing => {:title => 'Getting Testy', :description => "Lorem..."}
+      post :create, :listing => {:title => 'Getting Testy', :description => "Lorem...", :duration => 3}
     end
     assert_redirected_to new_user_session_path
   end
