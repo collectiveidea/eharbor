@@ -19,4 +19,21 @@ class BidMailerTest < ActionMailer::TestCase
       assert_match listing_path(@listing), @notification.body
     end
   end
+  
+  context "seller_notification" do
+    setup do
+      @listing = Factory(:listing)
+      @bid = Factory(:bid, :amount => 10, :listing => @listing)
+      @notification = BidMailer.create_seller_notification(@bid)
+    end
+    
+    should "send email to seller" do
+      assert_contains @notification.to, @listing.user.email
+    end
+    
+    should "have a link to the listing" do
+      assert_match listing_path(@listing), @notification.body
+    end
+  end
+  
 end

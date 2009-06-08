@@ -1,0 +1,7 @@
+<%= @bid.listing.user.nickname %>,
+
+You have a new bid on "<%= @bid.listing.title %>". <%= @bid.user.nickname %> bid <%= @bid.amount.format %>.
+
+<%= listing_url(@bid.listing) %>
+
+-- Your Friendly eHarbor Robot
