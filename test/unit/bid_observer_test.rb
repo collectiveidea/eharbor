@@ -23,7 +23,19 @@ class BidObserverTest < ActiveSupport::TestCase
     bid = listings(:macbook).bids.build(:amount => 200)
     bid.user = users(:amy)
     bid.save!
-    assert ActionMailer::Base.deliveries.empty?
+    assert ActionMailer::Base.deliveries.select{|message| message.subject == 'You have been outbid'}.empty?
   end
   
+  test "it should send the seller an email" do
+    @bid = listings(:macbook).bids.build(:amount => 200)
+    @bid.user = users(:amy)
+    @bid.save!
+    new_bid = listings(:macbook).bids.build(:amount => 300)
+    new_bid.user = users(:amy)
+    new_bid.save!
+    assert ActionMailer::Base.deliveries.any? do |email|
+      email.to.include? @listing.user.email
+    end
+  end
+
 end
