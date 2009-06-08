@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_presence_of :nickname
   validates_uniqueness_of :nickname, :case_sensitive => false
   
-  attr_accessible :nickname
+  attr_accessible :nickname, :time_zone
   
   def to_s
     nickname

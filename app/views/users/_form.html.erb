@@ -15,3 +15,7 @@
   <%= form.label :password_confirmation, "Confirm password" %>
   <%= form.password_field :password_confirmation %>
 </div>
+<div class="select_field">
+  <%= form.label :time_zone %>
+  <%= form.time_zone_select 'time_zone', ActiveSupport::TimeZone.us_zones, :default => 'Eastern Time (US & Canada)' %>
+</div>
