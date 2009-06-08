@@ -6,6 +6,9 @@ class BidsController < ApplicationController
     @bid = @listing.bids.build(params[:bid])
     @bid.user = current_user
     if @bid.save
+      if previous_bid = @listing.bids.first(:order => 'bids.cents DESC', :offset => 1)
+        BidMailer.deliver_outbid_notification(previous_bid)
+      end
       redirect_to @listing
     else
       render :template => 'listings/show'
