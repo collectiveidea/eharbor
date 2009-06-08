@@ -7,4 +7,10 @@ class BidMailer < ActionMailer::Base
     body :bid => bid
   end
   
+  def seller_notification(bid)
+    from "eHarbor <app@example.com>"
+    recipients "#{bid.listing.user.nickname} <#{bid.listing.user.email}>"
+    subject "New bid"
+    body :bid => bid
+  end
 end
