@@ -1,0 +1,11 @@
+<%= @bid.user.nickname %>,
+
+Oh no! You have been outbid on "<%= @bid.listing.title %>".
+
+You'll have to bid higher than <%= @bid.listing.highest_bid.amount.format %> to get back in the game.
+
+<%= listing_url(@bid.listing) %>
+
+Hurry, you only have <%= time_ago_in_words(@bid.listing.end_at) %> left!
+
+-- Your Friendly eHarbor Robot
