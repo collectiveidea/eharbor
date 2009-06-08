@@ -11,14 +11,23 @@ class BidMailerTest < ActionMailer::TestCase
     new_bid = listings(:macbook).bids.build(:amount => 300)
     new_bid.user = users(:amy)
     new_bid.save!
-    @notification = BidMailer.outbid_notification(@bid)
+    @outbid_notification = BidMailer.outbid_notification(@bid)
+    @seller_notification = BidMailer.seller_notification(@bid)
   end
   
   test "outbid notification should send email to bidder" do
-    assert @notification.to.include?(@bid.user.email)
+    assert @outbid_notification.to.include?(@bid.user.email)
   end
   
   test "outbid notification should have a link to the listing" do
-    assert_match Regexp.new(listing_path(@listing)), @notification.body.to_s
+    assert_match Regexp.new(listing_path(@listing)), @outbid_notification.body.to_s
+  end
+  
+  test "seller notification should send email to seller" do
+    assert @seller_notification.to.include?(@listing.user.email)
+  end
+  
+  test "seller notification should have a link to the listing" do
+    assert_match Regexp.new(listing_path(@listing)), @seller_notification.body.to_s
   end
 end
