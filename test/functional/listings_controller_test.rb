@@ -5,6 +5,7 @@ class ListingsControllerTest < ActionController::TestCase
   context "not signed in" do
     context "index" do
       setup do
+        @listing = Factory(:listing)
         get :index
       end
       
@@ -13,13 +14,14 @@ class ListingsControllerTest < ActionController::TestCase
       should_assign_to :listings
       
       should "link to listings" do
-        assert_select 'a[href=?]', listing_path(listings(:macbook)), listings(:macbook).title
+        assert_select 'a[href=?]', listing_path(@listing), @listing.title
       end
     end
     
     context "show" do
       setup do
-        get :show, :id => listings(:macbook)
+        @listing = Factory(:listing)
+        get :show, :id => @listing
       end
       
       should_respond_with :success
@@ -27,11 +29,11 @@ class ListingsControllerTest < ActionController::TestCase
       should_assign_to(:listing) { assigns(:listing) }
       
       should "should listing title" do
-        assert_select 'h2', listings(:macbook).title
+        assert_select 'h2', @listing.title
       end
       
       should "not display bid form when" do
-        assert_select 'form[action=?]', listing_bids_path(listings(:macbook)), false
+        assert_select 'form[action=?]', listing_bids_path(@listing), false
       end
     end
     
@@ -46,12 +48,12 @@ class ListingsControllerTest < ActionController::TestCase
     end
     
     context "edit" do
-      setup { get :edit, :id => listings(:macbook) }
+      setup { get :edit, :id => Factory(:listing) }
       should_deny_access
     end
 
     context "update" do
-      setup { put :update, :id => listings(:macbook) }
+      setup { put :update, :id => Factory(:listing) }
       should_deny_access
     end
     
@@ -59,16 +61,18 @@ class ListingsControllerTest < ActionController::TestCase
   
   context "signed in as a user" do
     setup do
-      sign_in_as users(:brandon)
+      @user = Factory(:user)
+      sign_in_as @user
     end
     
     context "show" do
       setup do
-        get :show, :id => listings(:macbook)
+        @listing = Factory(:listing)
+        get :show, :id => @listing
       end
       
       should "display bid form" do
-        assert_select 'form[action=?]', listing_bids_path(listings(:macbook))
+        assert_select 'form[action=?]', listing_bids_path(@listing)
       end
     end
     
@@ -103,25 +107,27 @@ class ListingsControllerTest < ActionController::TestCase
     
     context "edit" do
       setup do
-        get :edit, :id => listings(:macbook)
+        @listing = Factory(:listing, :user => @user)
+        get :edit, :id => @listing
       end
       
       should_respond_with :success
       should_render_template 'edit'
-      should_assign_to(:listing) { listings(:macbook) }
+      should_assign_to(:listing) { @listing }
     end
     
     context "update" do
       setup do
-        post :update, :id => listings(:macbook), :listing => {:title => 'Updated'}
+        @listing = Factory(:listing, :user => @user)
+        post :update, :id => @listing, :listing => {:title => 'Updated'}
       end
       
       should_respond_with :redirect
-      should_redirect_to('the listing') { listings(:macbook) }
+      should_redirect_to('the listing') { @listing }
       
       should "update the listing" do
-        listings(:macbook).reload
-        assert_equal 'Updated', listings(:macbook).title
+        @listing.reload
+        assert_equal 'Updated', @listing.title
       end
     end
   end
