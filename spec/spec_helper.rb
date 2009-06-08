@@ -15,7 +15,8 @@ module UserSpecHelper
   def sign_in_as(user)
     @controller.current_user = user
   end
-end    
+end  
+
 Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record
@@ -57,6 +58,7 @@ Spec::Runner.configure do |config|
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
   
   config.include UserSpecHelper
+  config.include ActionController::UrlWriter
 end
 
 
