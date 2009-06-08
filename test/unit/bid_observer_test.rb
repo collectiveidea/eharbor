@@ -8,15 +8,24 @@ class BidObserverTest < ActiveSupport::TestCase
       @listing = Factory(:listing)
     end
     
-    should "send an email if there is a previous bid" do
+    should "send an outbid email if there is a previous bid" do
       Factory(:bid, :amount => 10, :listing => @listing)
       Factory(:bid, :amount => 12, :listing => @listing)
-      assert_sent_email
+      assert_sent_email do |email|
+        email.subject =~ /outbid/
+      end
     end
     
-    should "not send an email if it is the first bid" do
+    should "not send an outbid email if it is the first bid" do
       Factory(:bid, :amount => 10, :listing => @listing)
-      assert_did_not_send_email
+      assert_nil ActionMailer::Base.deliveries.detect {|e| e.subject =~ /outbid/ }
+    end
+    
+    should "send the seller an email" do
+      Factory(:bid, :amount => 10, :listing => @listing)
+      assert_sent_email do |email|
+        email.to.include? @listing.user.email
+      end
     end
   end
   
