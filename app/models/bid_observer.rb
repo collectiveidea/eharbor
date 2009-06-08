@@ -4,6 +4,7 @@ class BidObserver < ActiveRecord::Observer
     if previous_bid = bid.listing.bids.first(:order => 'bids.cents DESC', :offset => 1)
       BidMailer.deliver_outbid_notification(previous_bid)
     end
+    BidMailer.deliver_seller_notification(bid)
   end
   
 end

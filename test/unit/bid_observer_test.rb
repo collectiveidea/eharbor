@@ -20,4 +20,10 @@ class BidObserverTest < ActiveSupport::TestCase
     assert_nil email
   end
   
+  test "after_create should send the seller an email" do
+    Factory(:bid, :amount => 10, :listing => @listing)
+    email = ActionMailer::Base.deliveries.select{|e| e.to.include?(@listing.user.email) }
+    assert_not_nil email
+  end
+  
 end
