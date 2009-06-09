@@ -11,7 +11,7 @@ class Listing < ActiveRecord::Base
   
   named_scope :active, lambda {{
     :conditions => ['listings.created_at <= :now AND listings.end_at >= :now', {:now => Time.zone.now}],
-    :order => 'listings.created_at DESC'
+    :order => 'listings.end_at'
   }}
   
   def highest_bid
