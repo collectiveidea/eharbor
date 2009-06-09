@@ -88,6 +88,10 @@ nav ul {
   margin: 0 0 0 109px;
 }
 
+.description {
+  margin: 1.5em 0;
+}
+
 /** Forms *********************/
 input.text {
   font-size: 18px;
