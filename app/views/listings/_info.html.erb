@@ -1,0 +1,29 @@
+<dt>Seller:</dt>
+<dd>
+  <%= link_to h(@listing.user), @listing.user %>
+  <% if signed_in? && current_user == @listing.user %>
+    (<%= link_to 'Edit', edit_listing_path(@listing) %>)
+  <% end %>
+</dd>
+<% if @listing.highest_bid %>
+  <dt>Highest Bid:</dt>
+  <dd>
+    <%= @listing.highest_bid.amount.format %>
+    (<%= link_to h(@listing.highest_bid.user), @listing.highest_bid.user %>)
+  </dd>
+<% end %>
+<dt>History:</dt>
+<dd><%= pluralize @listing.bids.count, 'bid' %>
+<% if @listing.active? %>
+  (<%= link_to_remote 'Refresh', :url => @listing, :method => :get, :update => 'info',
+    :loading =>  "$('info').addClassName('loading');",
+    :complete => "$('info').removeClassName('loading');" %>)
+<% end %>
+</dd>
+<% if @listing.active? %>
+  <dt>End time:</dt>
+  <dd>
+    <%= distance_of_time_in_words_to_now @listing.end_at, true %>
+    (<%= @listing.end_at.to_s(:listing) %>)
+  </dd>
+<% end %>
