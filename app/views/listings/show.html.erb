@@ -1,3 +1,11 @@
+<% if !@listing.active? %>
+  <% if @listing.highest_bid && @listing.highest_bid.user == current_user %>
+    <h2 id="expired" class="winner">Congratulations! <span>You are the winner.</span></h2>
+  <% else %>
+    <h2 id="expired">Sorry, <span>this auction has ended.</span></h2>
+  <% end %>
+<% end %>
+
 <h2><%=h @listing.title %></h2>
 <div id="info">
   <%= render 'listings/info' %>
