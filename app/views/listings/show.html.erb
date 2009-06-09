@@ -23,4 +23,7 @@
     <p><%= link_to 'Sign in', new_session_path %> or <%= link_to 'register', new_user_path %> to place a bid.</p>
   <% end %>
 </div>
+
+<%= periodically_call_remote :url => @listing, :update => 'info', :frequency => '10', :method => :get if @listing.end_at < 1.hour.from_now %>
 <% end %>
+
