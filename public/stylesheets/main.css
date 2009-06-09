@@ -64,7 +64,7 @@ nav ul {
     background-color: #333339;
   }
 
-dl.info {
+#info {
   background-color: #FFE;
   border: 1px solid #EED;
   border-radius: 10px;
@@ -72,8 +72,11 @@ dl.info {
   -moz-border-radius: 10px;
   padding: 12px;
 }
+#info.loading {
+  background: #FFE url(../images/spinner.gif) no-repeat center center;
+}
 
-dl.info dt {
+#info dt {
   float: left;
   clear: left;
   width: 100px;
@@ -81,7 +84,7 @@ dl.info dt {
   padding-right: 9px;
 }
 
-dl.info dd {
+#info dd {
   margin: 0 0 0 109px;
 }
 
