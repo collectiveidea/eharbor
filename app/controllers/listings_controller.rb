@@ -7,6 +7,11 @@ class ListingsController < ApplicationController
   
   def show
     @listing = Listing.find(params[:id])
+    
+    respond_to do |format|
+      format.html
+      format.js { render :partial => 'info' }
+    end
   end
   
   def new
