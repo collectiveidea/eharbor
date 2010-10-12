@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class ListingsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+  
+  setup do
+    sign_in users(:sam)
+  end
   
   test "index" do
     get :index
