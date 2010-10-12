@@ -41,6 +41,12 @@ class ListingsControllerTest < ActionController::TestCase
     end
   end
   
+  test "new when not signed in" do
+    sign_out :user
+    get :new
+    assert_redirected_to new_user_session_path
+  end
+  
   test "create" do
     assert_difference 'Listing.count' do
       post :create, :listing => {:title => 'Getting Testy', :description => "Lorem..."}
@@ -49,11 +55,25 @@ class ListingsControllerTest < ActionController::TestCase
     assert_redirected_to listing_path(assigns(:listing))
   end
   
+  test "create when not signed in" do
+    sign_out :user
+    assert_no_difference 'Listing.count' do
+      post :create, :listing => {:title => 'Getting Testy', :description => "Lorem..."}
+    end
+    assert_redirected_to new_user_session_path
+  end
+  
   test "edit" do
     get :edit, :id => listings(:macbook)
     assert_response :success
     assert_template 'edit'
     assert_equal listings(:macbook), assigns(:listing)
+  end
+  
+  test "edit when not signed in" do
+    sign_out :user
+    get :edit, :id => listings(:macbook)
+    assert_redirected_to new_user_session_path
   end
   
   test "update" do
@@ -64,4 +84,9 @@ class ListingsControllerTest < ActionController::TestCase
     assert_equal 'Updated', listings(:macbook).title
   end
   
+  test "update when not signed in" do
+    sign_out :user
+    post :update, :id => listings(:macbook), :listing => {:title => 'Updated'}
+    assert_redirected_to new_user_session_path
+  end
 end
