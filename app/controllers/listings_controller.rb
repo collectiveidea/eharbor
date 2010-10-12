@@ -14,7 +14,7 @@ class ListingsController < ApplicationController
   end
   
   def create
-    @listing = Listing.new(params[:listing])
+    @listing = current_user.listings.build(params[:listing])
     if @listing.save
       redirect_to @listing
     else
@@ -23,11 +23,11 @@ class ListingsController < ApplicationController
   end
   
   def edit
-    @listing = Listing.find(params[:id])
+    @listing = current_user.listings.find(params[:id])
   end
   
   def update
-    @listing = Listing.find(params[:id])
+    @listing = current_user.listings.find(params[:id])
     if @listing.update_attributes params[:listing]
       redirect_to @listing
     else

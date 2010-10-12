@@ -2,4 +2,7 @@
 <div>
   <%= @listing.description %>
 </div>
-<%= link_to 'Edit', edit_listing_path(@listing) %>
+
+<% if user_signed_in? && current_user == @listing.user %>
+  <%= link_to 'Edit', edit_listing_path(@listing) %>
+<% end %>
