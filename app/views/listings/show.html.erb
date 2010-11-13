@@ -1,29 +1,7 @@
 <h2><%= @listing.title %></h2>
-<dl class="info">
-  <dt>Seller:</dt>
-  <dd>
-    <%= @listing.user %>
-    <% if user_signed_in? && current_user == @listing.user %>
-      (<%= link_to 'Edit', edit_listing_path(@listing) %>)
-    <% end %>
-  </dd>
-  <% if @listing.highest_bid %>
-    <dt>Highest Bid:</dt>
-    <dd>
-      <%= number_to_currency(@listing.highest_bid.amount) %>
-      (<%= @listing.highest_bid.user %>)
-    </dd>
-  <% end %>
-  <dt>History:</dt>
-  <dd><%= pluralize @listing.bids.count, 'bid' %></dd>
-  <% if @listing.active? %>
-    <dt>End time:</dt>
-    <dd>
-      <%= distance_of_time_in_words_to_now @listing.end_at, true %>
-      (<%= @listing.end_at.to_s(:listing) %>)
-    </dd>
-  <% end %>
-</dl>
+
+<%= render 'info' %>
+
 <div class="description">
   <%= @listing.description %>
 </div>
