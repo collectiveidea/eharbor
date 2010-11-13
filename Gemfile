@@ -31,6 +31,10 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
+  gem 'cucumber-rails-training-wheels'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
 end
