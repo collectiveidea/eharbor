@@ -1,0 +1,2 @@
+$('#bid').html('Thanks for the bid of <%= number_to_currency @bid.amount %>');
+$('.info').replaceWith('<%= escape_javascript render("listings/info") %>');

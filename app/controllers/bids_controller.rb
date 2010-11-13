@@ -6,9 +6,21 @@ class BidsController < ApplicationController
     @bid = @listing.bids.build(params[:bid])
     @bid.user = current_user
     if @bid.save
-      redirect_to @listing
+      respond_to do |format|
+        format.html do
+          flash[:notice] = 'Your bid saved successfully.'
+          redirect_to @listing
+        end
+        format.js
+      end
     else
-      render 'listings/show'
+      respond_to do |format|
+        format.html do
+          flash.now[:alert] = 'Your bid has an error.'
+          render 'listings/show'
+        end
+        format.js { render 'create_failed' }
+      end
     end
   end
   
