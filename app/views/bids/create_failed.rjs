@@ -1,0 +1,2 @@
+page.replace 'new_bid', :partial => 'bids/form'
+page.visual_effect :shake, 'bid'

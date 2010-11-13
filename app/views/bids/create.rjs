@@ -1,0 +1,3 @@
+page.replace 'info', :partial => 'listings/info'
+page.visual_effect :highlight, 'info'
+page.replace_html 'bid', 'Thanks for your bid!'
